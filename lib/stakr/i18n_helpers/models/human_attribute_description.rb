@@ -36,7 +36,7 @@ module Stakr #:nodoc:
             defaults << options[:default] if options[:default]
             defaults.flatten!
             defaults << attribute_key_name.to_s.humanize
-            I18n.translate(defaults.shift, options.merge(:default => defaults, :scope => [i18n_top_level_key, :descriptions]))
+            I18n.translate(defaults.shift, options.merge(:default => defaults, :scope => [:activerecord, :descriptions]))
           end
           
         end

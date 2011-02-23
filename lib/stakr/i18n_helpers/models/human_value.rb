@@ -76,6 +76,7 @@ module Stakr #:nodoc:
                 :"#{klass.name.underscore}.#{attribute_key_name}.#{value}"
               end
               if value.is_a?(Fixnum)
+                # TODO: this is wrong: add :count => value to options instead
                 case value
                 when 0
                   defaults << self_and_descendants_from_active_record.map do |klass|
@@ -97,7 +98,7 @@ module Stakr #:nodoc:
               defaults << options[:default] if options[:default]
               defaults.flatten!
               defaults << value.to_s.humanize
-              I18n.translate(defaults.shift, options.merge(:default => defaults, :value => value, :scope => [i18n_top_level_key, :values]))
+              I18n.translate(defaults.shift, options.merge(:default => defaults, :value => value, :scope => [:activerecord, :values]))
             end
           end
           
