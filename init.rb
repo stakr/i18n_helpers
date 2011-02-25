@@ -15,6 +15,7 @@ end
 ActionView::Helpers.module_eval do
   include Stakr::I18nHelpers::Helper
   alias :t :translate
+  alias :human :translate # alternative alias is required as long as AllInOne overrides the "t" and "translate" methods
 end
 
 ActiveRecord::Base.class_eval do
